@@ -1,14 +1,22 @@
-String filename = "/home/ilich/sketchbook/photos/steve-mccurry-1.jpg";
+//String filename = "/home/ilich/sketchbook/photos/s-l400.jpg";
+//String filename = "/home/ilich/sketchbook/photos/srilanka.jpg";
+//String filename = "/home/ilich/sketchbook/photos/srilanka2.jpg";
+//String filename = "/home/ilich/sketchbook/photos/IMG_20180530_221450-EFFECTS.jpg";
+
+String filename = "/home/ilich/sketchbook/photos/iceland.jpg";
+
+int seed = 1;
 
 PImage img;
 
 int xmargin;
 int ymargin;
 int distance;
+int iterations = 1000;
 
 void setup() {
     
-  randomSeed(0);
+  randomSeed(seed);
   size(1800  , 1800);
 
   img = loadImage(filename);
@@ -33,7 +41,7 @@ void setup() {
   
   int i;
   
-  for (i=0; i<800; i++) {
+  for (i=0; i<iterations; i++) {
     _draw(i);
   }
   saveImage(i);
@@ -64,7 +72,7 @@ void saveImage(int frame) {
   println("saving", frame);
 
   String[] pathComponents = filename.split("/");
-  pathComponents[pathComponents.length-1]="random-squares-"+frame+"-"+pathComponents[pathComponents.length-1];
+  pathComponents[pathComponents.length-1]="random-squares-"+frame+"-"+seed+"-"+pathComponents[pathComponents.length-1];
 
   partialSave.save(String.join("/", pathComponents));
 }
