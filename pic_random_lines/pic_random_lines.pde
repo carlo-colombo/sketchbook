@@ -1,13 +1,17 @@
-String filename = "/home/ilich/sketchbook/photos/IMG_20160924_214442173_HDR.jpg";
+//String filename = "/home/ilich/sketchbook/photos/IMG_20191027_171206-EFFECTS.jpg";
+String filename = "//home/ilich/sketchbook/photos/santa4.jpg";
+
 
 PImage img;
 
 int xmargin;
 int ymargin;
 int distance;
+int seed = 2;
 
 void setup() {
-  size(1800, 1800);
+  randomSeed(seed);
+  size(1800 , 1800);
   background(255, 255, 255);
 
   img = loadImage(filename);
@@ -26,7 +30,7 @@ void setup() {
   filter(GRAY);
 
   int i;
-  for (i=0; i<=9*height; i++) {
+  for (i=0; i<=49*height; i++) {
     _draw();
   }
   saveImage(i);
@@ -39,7 +43,6 @@ void _draw() {
   int x2 = int(random(max(x1-distance, xmargin), min(x1+distance, width - xmargin)));
   int y2 = int(random(max(y1-distance, ymargin), min(y1+distance, height - ymargin)));
 
-  strokeWeight(4);
   stroke(extractColorFromImage(img, x1 - xmargin, y1 - ymargin, x2- xmargin, y2- ymargin));
 
   line(x1, y1, x2, y2);
@@ -55,7 +58,7 @@ void saveImage(int frame) {
   println("saving", frame);
 
   String[] pathComponents = filename.split("/");
-  pathComponents[pathComponents.length-1]="random-lines-"+frame+"-"+pathComponents[pathComponents.length-1];
+  pathComponents[pathComponents.length-1]="random-lines-"+frame+"-"+seed+"-"+pathComponents[pathComponents.length-1];
 
   partialSave.save(String.join("/", pathComponents));
 }
