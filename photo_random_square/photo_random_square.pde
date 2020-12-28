@@ -2,8 +2,8 @@
 //String filename = "/home/ilich/sketchbook/photos/srilanka.jpg";
 //String filename = "/home/ilich/sketchbook/photos/srilanka2.jpg";
 //String filename = "/home/ilich/sketchbook/photos/IMG_20180530_221450-EFFECTS.jpg";
-
-String filename = "/home/ilich/sketchbook/photos/iceland.jpg";
+//String filename = "/home/ilich/sketchbook/photos/iceland.jpg";
+String filename = "//home/ilich/sketchbook/photos/santa3.jpg";
 
 int seed = 1;
 
@@ -15,7 +15,7 @@ int distance;
 int iterations = 1000;
 
 void setup() {
-    
+
   randomSeed(seed);
   size(1800  , 1800);
 
@@ -30,17 +30,17 @@ void setup() {
   ymargin = (height - img.height)/2;
   distance = height/12;
 
- /* tint(255, 60);
-  image(img, xmargin, ymargin);
-  filter(GRAY);
-*/
+  /* tint(255, 60);
+     image(img, xmargin, ymargin);
+     filter(GRAY);
+  */
   background(extractColorFromImage(img, 0,0,img.width, img.height));
 
 
   translate(xmargin, ymargin);
-  
+
   int i;
-  
+
   for (i=0; i<iterations; i++) {
     _draw(i);
   }
@@ -49,12 +49,12 @@ void setup() {
 
 void _draw(int i) {
   int size = int(random(10, distance));
-  
+
   int x1 = int(random(0, img.width-size));
   int y1 = int(random(0, img.height-size));
-  
+
   println(x1,y1,size, "->", i);
-  
+
   color c = extractColorFromImage(img, x1,y1, size,size);
   fill(c, 75);
   stroke(c, 120);
@@ -64,10 +64,10 @@ void _draw(int i) {
 
 void saveImage(int frame) {
   PImage partialSave = get(
-    floor(xmargin), 
-    floor(ymargin), 
-    img.width, 
-    img.height);
+                           floor(xmargin),
+                           floor(ymargin),
+                           img.width,
+                           img.height);
 
   println("saving", frame);
 
